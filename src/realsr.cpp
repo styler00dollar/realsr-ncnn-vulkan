@@ -179,8 +179,8 @@ int RealSR::process(const ncnn::Mat& inimage, ncnn::Mat& outimage) const
     const int h = inimage.h;
     const int channels = inimage.elempack;
 
-    const int TILE_SIZE_X = tilesize;
-    const int TILE_SIZE_Y = tilesize;
+    const int TILE_SIZE_X = w;
+    const int TILE_SIZE_Y = h;
 
     ncnn::VkAllocator* blob_vkallocator = net.vulkan_device()->acquire_blob_allocator();
     ncnn::VkAllocator* staging_vkallocator = net.vulkan_device()->acquire_staging_allocator();
@@ -190,9 +190,9 @@ int RealSR::process(const ncnn::Mat& inimage, ncnn::Mat& outimage) const
     opt.workspace_vkallocator = blob_vkallocator;
     opt.staging_vkallocator = staging_vkallocator;
 
-    // each tile 100x100
-    const int xtiles = (w + TILE_SIZE_X - 1) / TILE_SIZE_X;
-    const int ytiles = (h + TILE_SIZE_Y - 1) / TILE_SIZE_Y;
+    // forcing to process one tile
+    const int xtiles = 1;
+    const int ytiles = 1;
 
     const size_t in_out_tile_elemsize = opt.use_fp16_storage ? 2u : 4u;
 
