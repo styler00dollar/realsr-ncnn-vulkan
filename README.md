@@ -1,5 +1,7 @@
 # RealSR ncnn Vulkan
 
+This fork simply disables tiling.
+
 ![CI](https://github.com/nihui/realsr-ncnn-vulkan/workflows/CI/badge.svg)
 ![download](https://img.shields.io/github/downloads/nihui/realsr-ncnn-vulkan/total.svg)
 
